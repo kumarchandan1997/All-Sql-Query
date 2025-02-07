@@ -1,5 +1,33 @@
 # Important Sql Query
 
+### Create computer table used for JOINS problem.
+```sql
+ CREATE TABLE COMPUTER (
+    COMPID INT PRIMARY KEY AUTO_INCREMENT,
+    BRAND VARCHAR(50),
+    COMPMODEL VARCHAR(50),
+    MANUFACTUREDATE DATE
+);
+```
+
+### Create EMPLOYEE table
+```sql
+
+    CREATE TABLE EMPLOYEE (
+        EMPID INT(5) PRIMARY KEY,
+        FIRSTNAME VARCHAR(50),
+        LASTNAME VARCHAR(50),
+        SALARY DECIMAL(8,2),
+        EMAILID VARCHAR(50),
+        MANAGERID INT(5),
+        DATEOFJOINING DATE,
+        DEPT VARCHAR(10),
+        COMPID INT(10),
+        CONSTRAINT FK_COMPID FOREIGN KEY (COMPID) REFERENCES COMPUTER(COMPID)
+    );
+    ```
+
+
 ### 1. SQL Query to update DateOfJoining to 15-jul-2012 for empid =1.
 
 ```sql
