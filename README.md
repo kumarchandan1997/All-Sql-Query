@@ -25,7 +25,8 @@
         COMPID INT(10),
         CONSTRAINT FK_COMPID FOREIGN KEY (COMPID) REFERENCES COMPUTER(COMPID)
     );
-    ```
+
+```
 
 
 ### 1. SQL Query to update DateOfJoining to 15-jul-2012 for empid =1.
