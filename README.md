@@ -274,5 +274,48 @@ select * from employee;
  UNION
  select department_id from department;
  ```   
+### 35.Write sql query to find dublicate rows in a table
+```sql
+select * , count(empid) from employee GROUP by empid having count(empid)>1;
+```
+### 36. employee details with the maximum and minimum salary in a single query 
+```sql
+ select employee_id,employee_name,department_id,department_name ,salary,
+ case
+  when salary = (select max(salary) from employee) then 'maz salary'
+  when salary = (select min(salary) from employee) then 'min salary'
+  end as salary_type
+  from employee
+  where salary = (select max(salary) from employee)
+  or salary = (select min(salary) from employee);
+  ```
+### 36.Assigning Bonus Based on Experience
+```sql
+  select employee_id,employee_name,years_of_experience,salary,
+  case
+  when years_of_experience >=10 then salary * 0.20
+  when years_of_experience between 5 and 9 then salary * 0.10
+  else salary * 0.05
+  end as Bonus
+  from employee;
+  ```
+ ### 37.Checking Even or Odd Employee ID
+ ```sql
+ select employee_id ,employee_name,
+ case 
+ when employee_id %2==0 then 'Even Id'
+ else 'odd Id' 
+ end as id_type
+ from employee;
+ ``` 
+### 38. query using if
+```sql
+SELECT 
+    employee_id, 
+    employee_name, 
+    salary,
+    IF(salary > 70000, 'High Salary', 'Low Salary') AS Salary_Status
+FROM Employees;
+```
 
 
