@@ -215,3 +215,41 @@ JOIN Employees e2 ON e1.department_id = e2.department_id AND e1.salary < e2.sala
   delete from employee where department_id = (select department_id from department
     where name = 'Accounting');
 ```
+### 29.Dispaly second higest salary from employee table
+```sql
+ select salary from employee order by salary desc limit 1,1;
+
+ select salary from employee e1 where N-1 =(select count(distinct salary) from employee e2 
+ where e2.salary>e1.salary);
+```
+### 30.Linit and offset
+```sql
+SELECT * FROM Employees
+LIMIT 5 OFFSET 10;  -- Skips first 10 rows, then returns the next 5 rows
+```
+### 31.Delete Dublicate records from employee
+```sql
+Delete e1
+from employee e1 join employee e2
+on e1.employee_name = e2.employee_name
+and e1.department_id <=> e2.department_id
+and e1.salary=e2.salary
+and e1.employee_id > e2.employee_id;
+
+DELETE FROM Employees 
+WHERE employee_id NOT IN (
+    SELECT * FROM (
+        SELECT MIN(employee_id) FROM Employees 
+        GROUP BY employee_name, department_id, salary
+    ) AS keep_records
+);
+
+
+create table employee_dup as select distinct * from employee;
+delete employee;
+insert into employee select * from employee_dup;
+delete employee_dup;
+select * from employee;
+```
+
+
