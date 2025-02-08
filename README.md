@@ -202,5 +202,16 @@ JOIN Employees e2 ON e1.department_id = e2.department_id AND e1.salary < e2.sala
   2.department(department_id,name,location_id)
   3.location(loaction_id,regional_group)
   ```sql
-  select * from employee where department_id = (select department_id from department where loaction_id =(select location_id from location where regional_group="new york"));
+  select * from employee where department_id =
+   (select department_id from department where loaction_id
+   =(select location_id from location where regional_group="new york"));
   ```
+### 27.update the employee salary , who are working as manager by base of 10%
+```sql
+ update employee set salary = salary*10/100 where  job_id=(select job_id from job where function ='manager');
+ ```
+ ### 28.Delete employee who are working in Accounting department ?
+ ```sql
+  delete from employee where department_id = (select department_id from department
+    where name = 'Accounting');
+```
