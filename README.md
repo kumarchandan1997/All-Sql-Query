@@ -180,3 +180,27 @@ SELECT e1.employee_name AS Employee, e1.salary, e2.employee_name AS Higher_Salar
 FROM Employees e1
 JOIN Employees e2 ON e1.department_id = e2.department_id AND e1.salary < e2.salary;
 ```
+### 23.List out department_id having atleast 3 employees
+```sql
+  select department_id , count(*) from employee GROUP by department_id having count(*) >=3;
+```
+### 24.How many employees who are working in different departments wise in organization
+```sql
+  select department_id , count(*) from employee GROUP by department_id;
+  ```
+### 25.Dispaly employee who got maximum salary
+```sql  
+    select * from employee where salary = (select max(salary) from employee);
+```
+### 26.Dispaly the employee who are working in sales department ?
+```sql
+ select * from employee where department_id in (select department_id from department where name='sales');
+ ```
+### 26.Dispaly the employee who are working in "new York" ?
+ ## table structure are
+  1.employee(employee_id,last_name,first_name,department_id)
+  2.department(department_id,name,location_id)
+  3.location(loaction_id,regional_group)
+  ```sql
+  select * from employee where department_id = (select department_id from department where loaction_id =(select location_id from location where regional_group="new york"));
+  ```
