@@ -175,7 +175,8 @@ FROM Employees e
 CROSS JOIN Departments d;
 ```
 ### 22.SELF JOIN (Comparing Employees with Higher Salaries in the Same Department)
-```sqlSELECT e1.employee_name AS Employee, e1.salary, e2.employee_name AS Higher_Salary_Employee, e2.salary
+```sql
+SELECT e1.employee_name AS Employee, e1.salary, e2.employee_name AS Higher_Salary_Employee, e2.salary
 FROM Employees e1
 JOIN Employees e2 ON e1.department_id = e2.department_id AND e1.salary < e2.salary;
 ```
