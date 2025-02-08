@@ -152,3 +152,30 @@
     WHERE N = (SELECT COUNT(DISTINCT SALARY)
     FROM EMPLOYEE E2 WHERE E2.SALARY > E1.SALARY);
   ```
+
+  ### 20.Full Outer join in mysql
+  ```sql
+    SELECT e.employee_id, e.employee_name, e.salary, d.department_name
+FROM Employees e
+LEFT JOIN Departments d ON e.department_id = d.department_id
+
+UNION
+
+SELECT e.employee_id, e.employee_name, e.salary, d.department_name
+FROM Employees e
+RIGHT JOIN Departments d ON e.department_id = d.department_id
+
+LIMIT 25;
+```
+
+### 21. CROSS JOIN (Returns Cartesian product - all combinations)
+```sql
+SELECT e.employee_name, d.department_name
+FROM Employees e
+CROSS JOIN Departments d;
+```
+### 22.SELF JOIN (Comparing Employees with Higher Salaries in the Same Department)
+```sqlSELECT e1.employee_name AS Employee, e1.salary, e2.employee_name AS Higher_Salary_Employee, e2.salary
+FROM Employees e1
+JOIN Employees e2 ON e1.department_id = e2.department_id AND e1.salary < e2.salary;
+```
