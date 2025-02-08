@@ -255,5 +255,24 @@ insert into employee select * from employee_dup;
 delete employee_dup;
 select * from employee;
 ```
+### 32.Write sql query to dispalay country name from country table that do not start with vowels and do not end with vowels.Result not contain dublicate.
+```sql
+ select distinct country_name from country where substr(country_name,1,1) not in ('a','e','i','o','u''A','E','I','O','U')
+ and
+ substr(country_name-1,1) not in ('a','e','i','o','u''A','E','I','O','U');
+ ```
+ ### 33.Write an sql query to find the current DateOfJoining
+ ```sql
+   select now();
+   select CURRENT_DATE;
+   ```
+### 34.write an sql query to fetch all the department_id which are present in either of the tables -employees and departments
+
+--union give me unique data from both table and union all give all data . 
+```sql
+ select department_id from employee
+ UNION
+ select department_id from department;
+ ```   
 
 
