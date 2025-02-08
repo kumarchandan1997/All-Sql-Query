@@ -236,6 +236,8 @@ and e1.department_id <=> e2.department_id
 and e1.salary=e2.salary
 and e1.employee_id > e2.employee_id;
 
+-- Second approch
+
 DELETE FROM Employees 
 WHERE employee_id NOT IN (
     SELECT * FROM (
@@ -243,6 +245,8 @@ WHERE employee_id NOT IN (
         GROUP BY employee_name, department_id, salary
     ) AS keep_records
 );
+
+-- third approch
 
 
 create table employee_dup as select distinct * from employee;
