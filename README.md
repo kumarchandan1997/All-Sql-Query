@@ -128,7 +128,7 @@
    SELECT * FROM EMPLOYEE E1 JOIN (
     SELECT DEPT, MAX(SALARY) SAL FROM EMPLOYEE GROUP BY DEPT) E2
     ON E1.DEPT = E2.DEPT AND E1.SALARY = E2.SAL;
-    ```
+  ```
 
   ### 17.Write an SQL query to fetch the first 50% records from a table:
   ```sql
