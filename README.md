@@ -116,13 +116,13 @@
  SELECT DEPT, COUNT (*) FROM EMPLOYEE GROUP BY DEPT HAVING COUNT(*) < 4;
    ```
 
-   ### 15.Write a query to retrieve Department wise Maximum salary:
+   ### 16.Write a query to retrieve Department wise Maximum salary:
    ```sql
     SELECT DEPT, MAX(SALARY) FROM EMPLOYEE GROUP BY DEPT;
 
    ```
 
-   ### 16.Write a query to Employee earning maximum salary in his department :
+   ### 17.Write a query to Employee earning maximum salary in his department :
 
   ```sql
    SELECT * FROM EMPLOYEE E1 JOIN (
@@ -130,30 +130,30 @@
     ON E1.DEPT = E2.DEPT AND E1.SALARY = E2.SAL;
   ```
 
-  ### 17.Write an SQL query to fetch the first 50% records from a table:
+  ### 18.Write an SQL query to fetch the first 50% records from a table:
   ```sql
     SELECT * FROM Customers LIMIT (select COUNT(*)/2 from Customers);
   ```
 
- ### 17.Query to fetch details of employees not having computer:
+ ### 19.Query to fetch details of employees not having computer:
  ```sql
   SELECT * FROM EMPLOYEE WHERE COMPID IS NULL;
  ```
 
-### 18.Query to fetch employee details along with the computer details who have been assigned with a computer :
+### 20.Query to fetch employee details along with the computer details who have been assigned with a computer :
  ```sql
     SELECT * FROM EMPLOYEE E JOIN COMPUTER C ON E.COMPID = C.COMPID;
 
  ```
 
- ### 19.Find Nth Highest salary :
+ ### 21.Find Nth Highest salary :
 ```sql
   SELECT DISTINCT SALARY FROM EMPLOYEE E1
     WHERE N = (SELECT COUNT(DISTINCT SALARY)
     FROM EMPLOYEE E2 WHERE E2.SALARY > E1.SALARY);
   ```
 
-  ### 20.Full Outer join in mysql
+  ### 22.Full Outer join in mysql
   ```sql
     SELECT e.employee_id, e.employee_name, e.salary, d.department_name
 FROM Employees e
@@ -168,35 +168,35 @@ RIGHT JOIN Departments d ON e.department_id = d.department_id
 LIMIT 25;
 ```
 
-### 21. CROSS JOIN (Returns Cartesian product - all combinations)
+### 23. CROSS JOIN (Returns Cartesian product - all combinations)
 ```sql
 SELECT e.employee_name, d.department_name
 FROM Employees e
 CROSS JOIN Departments d;
 ```
-### 22.SELF JOIN (Comparing Employees with Higher Salaries in the Same Department)
+### 24.SELF JOIN (Comparing Employees with Higher Salaries in the Same Department)
 ```sql
 SELECT e1.employee_name AS Employee, e1.salary, e2.employee_name AS Higher_Salary_Employee, e2.salary
 FROM Employees e1
 JOIN Employees e2 ON e1.department_id = e2.department_id AND e1.salary < e2.salary;
 ```
-### 23.List out department_id having atleast 3 employees
+### 25.List out department_id having atleast 3 employees
 ```sql
   select department_id , count(*) from employee GROUP by department_id having count(*) >=3;
 ```
-### 24.How many employees who are working in different departments wise in organization
+### 26.How many employees who are working in different departments wise in organization
 ```sql
   select department_id , count(*) from employee GROUP by department_id;
   ```
-### 25.Dispaly employee who got maximum salary
+### 27.Dispaly employee who got maximum salary
 ```sql  
     select * from employee where salary = (select max(salary) from employee);
 ```
-### 26.Dispaly the employee who are working in sales department ?
+### 28.Dispaly the employee who are working in sales department ?
 ```sql
  select * from employee where department_id in (select department_id from department where name='sales');
  ```
-### 26.Dispaly the employee who are working in "new York" ?
+### 29.Dispaly the employee who are working in "new York" ?
  ## table structure are
   1.employee(employee_id,last_name,first_name,department_id)
   2.department(department_id,name,location_id)
@@ -206,28 +206,28 @@ JOIN Employees e2 ON e1.department_id = e2.department_id AND e1.salary < e2.sala
    (select department_id from department where loaction_id
    =(select location_id from location where regional_group="new york"));
   ```
-### 27.update the employee salary , who are working as manager by base of 10%
+### 30.update the employee salary , who are working as manager by base of 10%
 ```sql
  update employee set salary = salary*10/100 where  job_id=(select job_id from job where function ='manager');
  ```
- ### 28.Delete employee who are working in Accounting department ?
+ ### 31.Delete employee who are working in Accounting department ?
  ```sql
   delete from employee where department_id = (select department_id from department
     where name = 'Accounting');
 ```
-### 29.Dispaly second higest salary from employee table
+### 32.Dispaly second higest salary from employee table
 ```sql
  select salary from employee order by salary desc limit 1,1;
 
  select salary from employee e1 where N-1 =(select count(distinct salary) from employee e2 
  where e2.salary>e1.salary);
 ```
-### 30.Linit and offset
+### 33.Linit and offset
 ```sql
 SELECT * FROM Employees
 LIMIT 5 OFFSET 10;  -- Skips first 10 rows, then returns the next 5 rows
 ```
-### 31.Delete Dublicate records from employee
+### 34.Delete Dublicate records from employee
 ```sql
 Delete e1
 from employee e1 join employee e2
@@ -255,18 +255,18 @@ insert into employee select * from employee_dup;
 delete employee_dup;
 select * from employee;
 ```
-### 32.Write sql query to dispalay country name from country table that do not start with vowels and do not end with vowels.Result not contain dublicate.
+### 35.Write sql query to dispalay country name from country table that do not start with vowels and do not end with vowels.Result not contain dublicate.
 ```sql
  select distinct country_name from country where substr(country_name,1,1) not in ('a','e','i','o','u''A','E','I','O','U')
  and
  substr(country_name-1,1) not in ('a','e','i','o','u''A','E','I','O','U');
  ```
- ### 33.Write an sql query to find the current DateOfJoining
+ ### 36.Write an sql query to find the current DateOfJoining
  ```sql
    select now();
    select CURRENT_DATE;
    ```
-### 34.write an sql query to fetch all the department_id which are present in either of the tables -employees and departments
+### 37.write an sql query to fetch all the department_id which are present in either of the tables -employees and departments
 
 --union give me unique data from both table and union all give all data . 
 ```sql
@@ -274,11 +274,11 @@ select * from employee;
  UNION
  select department_id from department;
  ```   
-### 35.Write sql query to find dublicate rows in a table
+### 38.Write sql query to find dublicate rows in a table
 ```sql
 select * , count(empid) from employee GROUP by empid having count(empid)>1;
 ```
-### 36. employee details with the maximum and minimum salary in a single query 
+### 39. employee details with the maximum and minimum salary in a single query 
 ```sql
  select employee_id,employee_name,department_id,department_name ,salary,
  case
@@ -289,7 +289,7 @@ select * , count(empid) from employee GROUP by empid having count(empid)>1;
   where salary = (select max(salary) from employee)
   or salary = (select min(salary) from employee);
   ```
-### 36.Assigning Bonus Based on Experience
+### 40.Assigning Bonus Based on Experience
 ```sql
   select employee_id,employee_name,years_of_experience,salary,
   case
@@ -299,7 +299,7 @@ select * , count(empid) from employee GROUP by empid having count(empid)>1;
   end as Bonus
   from employee;
   ```
- ### 37.Checking Even or Odd Employee ID
+ ### 41.Checking Even or Odd Employee ID
  ```sql
  select employee_id ,employee_name,
  case 
@@ -308,7 +308,7 @@ select * , count(empid) from employee GROUP by empid having count(empid)>1;
  end as id_type
  from employee;
  ``` 
-### 38. query using if
+### 42. query using if
 ```sql
 SELECT 
     employee_id, 
