@@ -148,9 +148,12 @@
 
  ### 21.Find Nth Highest salary :
 ```sql
-  SELECT DISTINCT SALARY FROM EMPLOYEE E1
-    WHERE N = (SELECT COUNT(DISTINCT SALARY)
-    FROM EMPLOYEE E2 WHERE E2.SALARY > E1.SALARY);
+  --first approch
+   select salary FORM employee e1 where N-1 =
+   (select count(distinct salary) from employee e2 where e2.salary > e1.salary);
+
+   --second approch
+   select salary from employee order by salary desc limit 1,1;
   ```
 
   ### 22.Full Outer join in mysql
