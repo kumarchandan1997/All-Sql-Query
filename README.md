@@ -124,27 +124,27 @@
 
    ### 16.Write a query to Employee earning maximum salary in his department :
 
-   ```sql
+  ```sql
    SELECT * FROM EMPLOYEE E1 JOIN (
     SELECT DEPT, MAX(SALARY) SAL FROM EMPLOYEE GROUP BY DEPT) E2
     ON E1.DEPT = E2.DEPT AND E1.SALARY = E2.SAL;
     ```
 
-    ### 17.Write an SQL query to fetch the first 50% records from a table:
-    ```sql
+  ### 17.Write an SQL query to fetch the first 50% records from a table:
+  ```sql
     SELECT * FROM Customers LIMIT (select COUNT(*)/2 from Customers);
-```
+  ```
 
  ### 17.Query to fetch details of employees not having computer:
  ```sql
   SELECT * FROM EMPLOYEE WHERE COMPID IS NULL;
-```
+ ```
 
 ### 18.Query to fetch employee details along with the computer details who have been assigned with a computer :
-```sql
+ ```sql
     SELECT * FROM EMPLOYEE E JOIN COMPUTER C ON E.COMPID = C.COMPID;
 
-```
+ ```
 
  ### 19.Find Nth Highest salary :
 ```sql
@@ -317,5 +317,6 @@ SELECT
     IF(salary > 70000, 'High Salary', 'Low Salary') AS Salary_Status
 FROM Employees;
 ```
+
 
 
