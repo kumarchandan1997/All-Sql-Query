@@ -225,7 +225,7 @@ JOIN Employees e2 ON e1.department_id = e2.department_id AND e1.salary < e2.sala
  select salary from employee e1 where N-1 =(select count(distinct salary) from employee e2 
  where e2.salary>e1.salary);
 ```
-### 33.Linit and offset
+### 33.Limit and offset
 ```sql
 SELECT * FROM Employees
 LIMIT 5 OFFSET 10;  -- Skips first 10 rows, then returns the next 5 rows
@@ -285,7 +285,7 @@ select * , count(empid) from employee GROUP by empid having count(empid)>1;
 ```sql
  select employee_id,employee_name,department_id,department_name ,salary,
  case
-  when salary = (select max(salary) from employee) then 'maz salary'
+  when salary = (select max(salary) from employee) then 'max salary'
   when salary = (select min(salary) from employee) then 'min salary'
   end as salary_type
   from employee
